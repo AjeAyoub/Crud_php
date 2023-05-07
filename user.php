@@ -1,60 +1,60 @@
+
 <?php
 include 'connect.php';
 
 if(isset($_POST['submit'])){
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $phone = $_POST['phone'];
-    $country = $_POST['country'];
+  
+  $name=$_POST['name'];
+  $email=$_POST['email'];
+  $mobile=$_POST['mobile'];
+  $password=$_POST['password'];
 
-    $sql = "INSERT INTO `cruds` (name, email, password, phone, country) VALUES ('$name','$email','$password','$phone','$country')";
-    $result = mysqli_query($con,$sql);
+  $sql = "insert into `crud` (name,email,mobile,password)
+  values('$name','$email','$mobile','$password')";
 
-    if($result){
-       // echo "used added successfuly";
-       header('location:show_users.php');
-    }
+  $result = mysqli_query($con,$sql);
+
+  if($result){
+   //echo  "user added successfully";
+   header('location:display.php');
+  }else{
+        die(mysqli_error($con));
+  }
 }
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Crud Operations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
 
-
-    <title>Add User</title>
 </head>
 <body>
-    <div class = "container" >
-      <form method = "POST">
-      <div class="mb-3 my-5">
-          <input type="text" class="form-control" name="name" autocomplete= "off"  placeholder="Name">
-        </div>
-        <div class="mb-3  "  >
-          <input type="email" class="form-control" name="email" autocomplete= "off"  placeholder="Email address">
-        </div>
-        <div class="mb-3 " >
-          <input type="password" class="form-control" name="password" autocomplete= "off"  placeholder="Password">
-        </div>
-        <div class="mb-3 " >
-          <input type="text" class="form-control" name="phone" autocomplete= "off"  placeholder="Phone">
-        </div>
-        <div class="mb-3 " >
-          <input type="text" class="form-control" name="country" autocomplete= "off"  placeholder="Country">
-        </div>
-        
-       
-        <button type="submit" class="btn btn-primary" name = "submit">Submit</button>
-      </form>
-    </div>
-    
+
+
+  <div class="container">
+    <form method="post" class="my-5">
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" placeholder="Enter Your Name" autocomplete="off">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Email address</label>
+        <input type="email" class="form-control" name="email" placeholder="Enter Your Email" autocomplete="off">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Mobile Number</label>
+        <input type="text" class="form-control" name="mobile" placeholder="Enter Your Mobile Number" autocomplete="off">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input type="text" class="form-control" name="password" placeholder="Enter Your Password" autocomplete="off">
+      </div>
+      <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+    </form>
+  </div>
 </body>
 </html>
